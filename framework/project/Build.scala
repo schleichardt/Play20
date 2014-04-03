@@ -125,8 +125,8 @@ object Resolvers {
 
   val isSnapshotBuild = buildVersion.endsWith("SNAPSHOT")
   val typesafeResolvers = if (isSnapshotBuild) Seq(typesafeReleases, typesafeSnapshots) else Seq(typesafeReleases)
-  val publishingMavenRepository = Resolver.file("file", new File(Path.userHome.absolutePath + "/Projekte/schleichardt.github.com/jvmrepo"))(Resolver.mavenStylePatterns)
-  val publishingIvyRepository = Resolver.file("tmp", new File("/tmp"))
+  val publishingMavenRepository = Resolver.file("file", new File(Path.userHome.absolutePath + "/Projekte/schleichardt.github.io/jvmrepo"))(Resolver.mavenStylePatterns)
+  val publishingIvyRepository = Resolver.file("file", new File(Path.userHome.absolutePath + "/Projekte/schleichardt.github.io/jvmrepo"))(Resolver.mavenStylePatterns)
 }
 
 
