@@ -125,8 +125,8 @@ object Resolvers {
 
   val isSnapshotBuild = buildVersion.endsWith("SNAPSHOT")
   val typesafeResolvers = if (isSnapshotBuild) Seq(typesafeReleases, typesafeSnapshots) else Seq(typesafeReleases)
-  val publishingMavenRepository = if (isSnapshotBuild) publishTypesafeMavenSnapshots else publishTypesafeMavenReleases
-  val publishingIvyRepository = if (isSnapshotBuild) publishTypesafeIvySnapshots else publishTypesafeIvyReleases
+  val publishingMavenRepository = Resolver.file("file", new File(Path.userHome.absolutePath + "/Projekte/schleichardt.github.com/jvmrepo"))(Resolver.mavenStylePatterns)
+  val publishingIvyRepository = Resolver.file("tmp", new File("/tmp"))
 }
 
 
@@ -235,7 +235,7 @@ object PlayBuild extends Build {
   lazy val SbtPluginProject = PlaySbtProject("SBT-Plugin", "sbt-plugin")
     .settings(
       sbtPlugin := true,
-      publishMavenStyle := false,
+      publishMavenStyle := true,
       libraryDependencies := sbtDependencies,
       sbtVersion in GlobalScope := buildSbtVersion,
       sbtBinaryVersion in GlobalScope := buildSbtVersionBinaryCompatible,
